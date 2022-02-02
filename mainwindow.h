@@ -39,7 +39,7 @@ float a1;
 float a2;
 float res;
 
-
+int count_swap = 0;
 
 float num1;
 float num2;
@@ -49,6 +49,10 @@ char num22[4]={0};
 uint8_t priznak;
 
 char data[10]={0};
+
+
+QList<QSerialPortInfo>ports;
+QStringList list;
 
 public:
     MainWindow(QWidget *parent = nullptr);
@@ -65,7 +69,10 @@ private slots:
     void on_pB_sendData_clicked();
     void on_pushButton_clicked();
 
+    void on_pB_swap_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QSerialPortInfo portInfo;
 };
 #endif // MAINWINDOW_H

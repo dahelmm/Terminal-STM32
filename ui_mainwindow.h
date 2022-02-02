@@ -21,7 +21,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -30,13 +29,15 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralwidget;
-    QGridLayout *gridLayout;
-    QVBoxLayout *verticalLayout_4;
-    QVBoxLayout *verticalLayout_3;
+    QGridLayout *gridLayout_3;
+    QGridLayout *gridLayout_2;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *pB_search;
     QLineEdit *lE_port;
-    QVBoxLayout *verticalLayout_2;
+    QPushButton *pB_swap;
+    QPushButton *pB_Con;
+    QPushButton *pB_Discon;
+    QGridLayout *gridLayout;
     QHBoxLayout *hL_bR;
     QLabel *l_bR;
     QComboBox *cB_bR;
@@ -49,23 +50,20 @@ public:
     QHBoxLayout *hL_sB;
     QLabel *l_sB;
     QComboBox *cB_sB;
+    QPushButton *pB_SaveSett;
     QHBoxLayout *hL_fC;
     QLabel *l_fC;
     QComboBox *cB_fC;
-    QPushButton *pB_SaveSett;
-    QHBoxLayout *pB_control;
-    QPushButton *pB_Con;
-    QPushButton *pB_Discon;
-    QVBoxLayout *verticalLayout_5;
-    QVBoxLayout *verticalLayout;
+    QPushButton *pB_float;
+    QHBoxLayout *horizontalLayout_4;
+    QLabel *label;
+    QLineEdit *lE_recieveData;
     QHBoxLayout *horizontalLayout;
     QLabel *l_sendText;
     QLineEdit *lE_sendText;
-    QPushButton *pB_float;
     QPushButton *pB_sendData;
-    QHBoxLayout *horizontalLayout_3;
-    QTextEdit *tE_receive;
     QPushButton *pushButton;
+    QTextEdit *tE_receive;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -73,15 +71,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(965, 292);
+        MainWindow->resize(1274, 754);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
-        gridLayout = new QGridLayout(centralwidget);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        gridLayout_3 = new QGridLayout(centralwidget);
+        gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         pB_search = new QPushButton(centralwidget);
@@ -94,11 +90,26 @@ public:
 
         horizontalLayout_2->addWidget(lE_port);
 
+        pB_swap = new QPushButton(centralwidget);
+        pB_swap->setObjectName(QString::fromUtf8("pB_swap"));
 
-        verticalLayout_3->addLayout(horizontalLayout_2);
+        horizontalLayout_2->addWidget(pB_swap);
 
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        pB_Con = new QPushButton(centralwidget);
+        pB_Con->setObjectName(QString::fromUtf8("pB_Con"));
+
+        horizontalLayout_2->addWidget(pB_Con);
+
+        pB_Discon = new QPushButton(centralwidget);
+        pB_Discon->setObjectName(QString::fromUtf8("pB_Discon"));
+
+        horizontalLayout_2->addWidget(pB_Discon);
+
+
+        gridLayout_2->addLayout(horizontalLayout_2, 0, 0, 1, 1);
+
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         hL_bR = new QHBoxLayout();
         hL_bR->setObjectName(QString::fromUtf8("hL_bR"));
         l_bR = new QLabel(centralwidget);
@@ -120,7 +131,7 @@ public:
         hL_bR->addWidget(cB_bR);
 
 
-        verticalLayout_2->addLayout(hL_bR);
+        gridLayout->addLayout(hL_bR, 0, 0, 1, 1);
 
         hL_dB = new QHBoxLayout();
         hL_dB->setObjectName(QString::fromUtf8("hL_dB"));
@@ -139,7 +150,7 @@ public:
         hL_dB->addWidget(cB_dB);
 
 
-        verticalLayout_2->addLayout(hL_dB);
+        gridLayout->addLayout(hL_dB, 1, 0, 1, 1);
 
         hL_P = new QHBoxLayout();
         hL_P->setObjectName(QString::fromUtf8("hL_P"));
@@ -159,7 +170,7 @@ public:
         hL_P->addWidget(cB_P);
 
 
-        verticalLayout_2->addLayout(hL_P);
+        gridLayout->addLayout(hL_P, 2, 0, 1, 2);
 
         hL_sB = new QHBoxLayout();
         hL_sB->setObjectName(QString::fromUtf8("hL_sB"));
@@ -177,7 +188,12 @@ public:
         hL_sB->addWidget(cB_sB);
 
 
-        verticalLayout_2->addLayout(hL_sB);
+        gridLayout->addLayout(hL_sB, 3, 0, 1, 1);
+
+        pB_SaveSett = new QPushButton(centralwidget);
+        pB_SaveSett->setObjectName(QString::fromUtf8("pB_SaveSett"));
+
+        gridLayout->addWidget(pB_SaveSett, 3, 1, 2, 1);
 
         hL_fC = new QHBoxLayout();
         hL_fC->setObjectName(QString::fromUtf8("hL_fC"));
@@ -195,41 +211,35 @@ public:
         hL_fC->addWidget(cB_fC);
 
 
-        verticalLayout_2->addLayout(hL_fC);
+        gridLayout->addLayout(hL_fC, 4, 0, 1, 1);
 
 
-        verticalLayout_3->addLayout(verticalLayout_2);
+        gridLayout_2->addLayout(gridLayout, 1, 0, 1, 1);
 
 
-        verticalLayout_4->addLayout(verticalLayout_3);
+        gridLayout_3->addLayout(gridLayout_2, 0, 0, 5, 1);
 
-        pB_SaveSett = new QPushButton(centralwidget);
-        pB_SaveSett->setObjectName(QString::fromUtf8("pB_SaveSett"));
+        pB_float = new QPushButton(centralwidget);
+        pB_float->setObjectName(QString::fromUtf8("pB_float"));
 
-        verticalLayout_4->addWidget(pB_SaveSett);
+        gridLayout_3->addWidget(pB_float, 0, 1, 1, 1);
 
-        pB_control = new QHBoxLayout();
-        pB_control->setObjectName(QString::fromUtf8("pB_control"));
-        pB_Con = new QPushButton(centralwidget);
-        pB_Con->setObjectName(QString::fromUtf8("pB_Con"));
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        label = new QLabel(centralwidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setMaximumSize(QSize(16777215, 30));
 
-        pB_control->addWidget(pB_Con);
+        horizontalLayout_4->addWidget(label);
 
-        pB_Discon = new QPushButton(centralwidget);
-        pB_Discon->setObjectName(QString::fromUtf8("pB_Discon"));
+        lE_recieveData = new QLineEdit(centralwidget);
+        lE_recieveData->setObjectName(QString::fromUtf8("lE_recieveData"));
 
-        pB_control->addWidget(pB_Discon);
-
-
-        verticalLayout_4->addLayout(pB_control);
+        horizontalLayout_4->addWidget(lE_recieveData);
 
 
-        gridLayout->addLayout(verticalLayout_4, 0, 0, 1, 1);
+        gridLayout_3->addLayout(horizontalLayout_4, 1, 1, 1, 1);
 
-        verticalLayout_5 = new QVBoxLayout();
-        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         l_sendText = new QLabel(centralwidget);
@@ -243,43 +253,29 @@ public:
         horizontalLayout->addWidget(lE_sendText);
 
 
-        verticalLayout->addLayout(horizontalLayout);
-
-        pB_float = new QPushButton(centralwidget);
-        pB_float->setObjectName(QString::fromUtf8("pB_float"));
-
-        verticalLayout->addWidget(pB_float);
+        gridLayout_3->addLayout(horizontalLayout, 2, 1, 1, 1);
 
         pB_sendData = new QPushButton(centralwidget);
         pB_sendData->setObjectName(QString::fromUtf8("pB_sendData"));
 
-        verticalLayout->addWidget(pB_sendData);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-
-        verticalLayout->addLayout(horizontalLayout_3);
-
-
-        verticalLayout_5->addLayout(verticalLayout);
-
-        tE_receive = new QTextEdit(centralwidget);
-        tE_receive->setObjectName(QString::fromUtf8("tE_receive"));
-
-        verticalLayout_5->addWidget(tE_receive);
-
-
-        gridLayout->addLayout(verticalLayout_5, 0, 1, 1, 1);
+        gridLayout_3->addWidget(pB_sendData, 3, 1, 1, 1);
 
         pushButton = new QPushButton(centralwidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
-        gridLayout->addWidget(pushButton, 1, 0, 1, 1);
+        gridLayout_3->addWidget(pushButton, 4, 1, 1, 1);
+
+        tE_receive = new QTextEdit(centralwidget);
+        tE_receive->setObjectName(QString::fromUtf8("tE_receive"));
+        tE_receive->setMinimumSize(QSize(500, 500));
+        tE_receive->setMaximumSize(QSize(16777215, 16777215));
+
+        gridLayout_3->addWidget(tE_receive, 5, 0, 1, 2);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 965, 22));
+        menubar->setGeometry(QRect(0, 0, 1274, 26));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -298,6 +294,9 @@ public:
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         pB_search->setText(QCoreApplication::translate("MainWindow", "Search", nullptr));
+        pB_swap->setText(QCoreApplication::translate("MainWindow", "Swap", nullptr));
+        pB_Con->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\264\320\272\320\273\321\216\321\207\320\270\321\202\321\214\321\201\321\217", nullptr));
+        pB_Discon->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\320\273\321\216\321\207\320\270\321\202\321\214\321\201\321\217", nullptr));
         l_bR->setText(QCoreApplication::translate("MainWindow", "BaudRate (\320\241\320\272\320\276\321\200\320\276\321\201\321\202\321\214):", nullptr));
         cB_bR->setItemText(0, QCoreApplication::translate("MainWindow", "1200", nullptr));
         cB_bR->setItemText(1, QCoreApplication::translate("MainWindow", "2400", nullptr));
@@ -326,16 +325,15 @@ public:
         cB_sB->setItemText(1, QCoreApplication::translate("MainWindow", "OneAndHalfStop (1,5 \321\201\321\202\320\276\320\277\320\276\320\262\321\213\321\205 \320\261\320\270\321\202\320\260)", nullptr));
         cB_sB->setItemText(2, QCoreApplication::translate("MainWindow", "TwoStop (2 \321\201\321\202\320\276\320\277\320\276\320\262\321\213\321\205 \320\261\320\270\321\202\320\260)", nullptr));
 
+        pB_SaveSett->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\275\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270", nullptr));
         l_fC->setText(QCoreApplication::translate("MainWindow", "FlowControl (\320\232\320\276\320\275\321\202\321\200\320\276\320\273\321\214 \320\277\320\265\321\200\320\265\320\264\320\260\321\207\320\270):", nullptr));
         cB_fC->setItemText(0, QCoreApplication::translate("MainWindow", "NoFlowControl (\320\235\320\265\321\202 \320\272\320\276\320\275\321\202\321\200\320\276\320\273\321\217 \320\277\320\276\321\202\320\276\320\272\320\260)", nullptr));
         cB_fC->setItemText(1, QCoreApplication::translate("MainWindow", "HardwareControl (\320\220\320\277\320\277\320\260\321\200\320\260\321\202\320\275\320\276\320\265 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\321\202\320\276\320\272\320\276\320\274 RTS/CTS)", nullptr));
         cB_fC->setItemText(2, QCoreApplication::translate("MainWindow", "SoftwareControl (\320\237\321\200\320\276\320\263\321\200\320\260\320\274\320\274\320\275\320\276\320\265 \321\203\320\277\321\200\320\260\320\262\320\273\320\265\320\275\320\270\320\265 \320\277\320\276\321\202\320\276\320\272\320\276\320\274 XON/XOFF)", nullptr));
 
-        pB_SaveSett->setText(QCoreApplication::translate("MainWindow", "\320\241\320\276\321\205\321\200\320\260\320\275\320\270\321\202\321\214 \320\275\320\260\321\201\321\202\321\200\320\276\320\271\320\272\320\270", nullptr));
-        pB_Con->setText(QCoreApplication::translate("MainWindow", "\320\237\320\276\320\264\320\272\320\273\321\216\321\207\320\270\321\202\321\214\321\201\321\217", nullptr));
-        pB_Discon->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\272\320\273\321\216\321\207\320\270\321\202\321\214\321\201\321\217", nullptr));
-        l_sendText->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\277\321\200\320\260\320\262\320\270\321\202\321\214 \321\202\320\265\320\272\321\201\321\202:", nullptr));
         pB_float->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\320\262\320\265\321\201\321\202\320\270 \321\207\320\270\321\201\320\273\320\276 \320\262 \321\204\320\276\321\200\320\274\320\260\321\202\320\265 float", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "\320\237\321\200\320\270\320\275\320\270\320\274\320\260\320\265\320\274\320\276\320\265 \321\207\320\270\321\201\320\273\320\276:", nullptr));
+        l_sendText->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\277\321\200\320\260\320\262\320\270\321\202\321\214 \321\207\320\270\321\201\320\273\320\276:", nullptr));
         pB_sendData->setText(QCoreApplication::translate("MainWindow", "\320\236\321\202\320\277\321\200\320\260\320\262\320\270\321\202\321\214 \320\262 \320\234\320\232", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\320\222\321\213\321\205\320\276\320\264", nullptr));
     } // retranslateUi

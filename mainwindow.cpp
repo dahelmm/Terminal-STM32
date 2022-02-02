@@ -56,33 +56,34 @@ void MainWindow::ReadDataSend()
     num11[2] = data[2];
     num11[3] = data[3];
 
-    num22[0] = data[4];
-    num22[1] = data[5];
-    num22[2] = data[6];
-    num22[3] = data[7];
+//    num22[0] = data[4];
+//    num22[1] = data[5];
+//    num22[2] = data[6];
+//    num22[3] = data[7];
 
-    priznak = data[8];
+//    priznak = data[8];
 
     num1 = *(reinterpret_cast<float*>(num11));
-    num2 = *(reinterpret_cast<float*>(num22));
+//    num2 = *(reinterpret_cast<float*>(num22));
 
     a1 = num1;
-    a2 = num2;
-    if(priznak == (int)'!')
-    {
-        res = a1+a2;
-        qDebug()<<res;
-        ui->lE_sendText->setText(QString::number(res));
-    }
-        char send_arr[4];
-        char * sendfloat = reinterpret_cast<char*>(&res);
-            for (uint8_t k = 0;k<4;k++) {
-                send_arr[k]=*sendfloat;
-                sendfloat++;
-            }
+
+//    a2 = num2;
+//    if(priznak == (int)'!')
+//    {
+//        res = a1+a2;
+//        qDebug()<<res;
+//        ui->lE_sendText->setText(QString::number(res));
+//    }
+//        char send_arr[4];
+//        char * sendfloat = reinterpret_cast<char*>(&res);
+//            for (uint8_t k = 0;k<4;k++) {
+//                send_arr[k]=*sendfloat;
+//                sendfloat++;
+//            }
     QThread::msleep(100);
     QApplication::processEvents();
-    thisPort.write(send_arr,4);
+//    thisPort.write(send_arr,4);
 
 }
 void MainWindow::writeData()
@@ -197,12 +198,10 @@ void MainWindow::on_pB_SaveSett_clicked()
 
 void MainWindow::on_pB_search_clicked()
 {
-    const auto ports = QSerialPortInfo::availablePorts();
+    ports = QSerialPortInfo::availablePorts();
     for(const QSerialPortInfo &info : ports)
     {
-        QStringList list;
         list<<info.portName();
-        qDebug()<<list;
         ui->lE_port->setText(list.first());
     }
 }
@@ -217,10 +216,20 @@ void MainWindow::on_pushButton_clicked()
 
 void MainWindow::on_pB_float_clicked()
 {
-
+    ui->lE_recieveData->setText(QString::number(a1));
 }
 
 void MainWindow::on_pB_sendData_clicked()
 {
 
+}
+
+void MainWindow::on_pB_swap_clicked()
+{
+    count_swap++;
+    ui->lE_port->setText((list.at(count_swap)));
+    if(count_swap==list.size()-1)
+    {
+        count_swap = 0;
+    }
 }
