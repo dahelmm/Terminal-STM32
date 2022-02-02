@@ -202,6 +202,7 @@ void MainWindow::on_pB_search_clicked()
     {
         QStringList list;
         list<<info.portName();
+        qDebug()<<list;
         ui->lE_port->setText(list.first());
     }
 }
@@ -212,4 +213,14 @@ void MainWindow::on_pushButton_clicked()
 {
     thisPort.close();
     this->close();
+}
+
+void MainWindow::on_pB_float_clicked()
+{
+
+}
+
+void MainWindow::on_pB_sendData_clicked()
+{
+
 }
